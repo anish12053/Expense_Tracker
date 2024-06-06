@@ -1,6 +1,7 @@
 import 'package:expense_tracker/data/expense_data.dart';
 import 'package:expense_tracker/model/expense_model.dart';
 import 'package:expense_tracker/widgets/add_expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expense_list.dart';
 import 'package:flutter/material.dart';
 
@@ -83,6 +84,7 @@ class _ExpensePage extends State<ExpensePage> {
       ),
       body: Column(
         children: [
+          Chart(expenses: addedExpense),
           Expanded(child: activeScreen),
         ],
       ),

@@ -13,6 +13,7 @@ class ExpenseList extends StatelessWidget {
       itemCount: expenselist.length,
       itemBuilder: (context, index) {
         return Dismissible(
+          background: Container(color: const Color.fromARGB(255, 223, 103, 94),),
           key: ValueKey(expenselist[index]),
           onDismissed: (direction){
             onDelte(expenselist[index]);
