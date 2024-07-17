@@ -4,6 +4,7 @@ import 'package:expense_tracker/widgets/add_expense.dart';
 import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expense_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ExpensePage extends StatefulWidget {
   const ExpensePage({super.key});
@@ -17,6 +18,7 @@ class ExpensePage extends StatefulWidget {
 class _ExpensePage extends State<ExpensePage> {
   void openModal() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: ((context) => AddExpense(
@@ -52,6 +54,7 @@ class _ExpensePage extends State<ExpensePage> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     Widget activeScreen = const Center(
       child: Text(
         '          No expense Yet!!\nAdd you expenses Manisha',
@@ -82,9 +85,14 @@ class _ExpensePage extends State<ExpensePage> {
           ),
         ],
       ),
-      body: Column(
+      body: width < 600 ? Column(
         children: [
           Chart(expenses: addedExpense),
+          Expanded(child: activeScreen),
+        ],
+      ) : Row(
+        children: [
+          Expanded(child: Chart(expenses: addedExpense)),
           Expanded(child: activeScreen),
         ],
       ),
